@@ -1,0 +1,7 @@
+if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+	set(BUILD_STANDALONE on)
+	message(STATUS "${PROJECT_NAME} building standalone")
+else()
+	set(BUILD_STANDALONE off)
+	message(STATUS "${PROJECT_NAME} building as a subproject of ${PARENT_PROJECT_NAME}")
+endif()

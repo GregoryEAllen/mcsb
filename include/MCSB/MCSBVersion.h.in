@@ -1,0 +1,40 @@
+//=============================================================================
+//	This file is part of MCSB, the Multi-Client Shared Buffer
+//	Copyright (C) 2014  Gregory E. Allen and
+//		Applied Research Laboratories: The University of Texas at Austin
+//
+//	MCSB is free software: you can redistribute it and/or modify it
+//	under the terms of the GNU Lesser General Public License as published
+//	by the Free Software Foundation, either version 2.1 of the License, or
+//	(at your option) any later version.
+//
+//	MCSB is distributed in the hope that it will be useful,
+//	but WITHOUT ANY WARRANTY; without even the implied warranty of
+//	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+//	Lesser General Public License <http://www.gnu.org/licenses/lgpl.html>
+//	for more details.
+//=============================================================================
+
+/// \file MCSBVersion.h
+/// \brief Compile-time version of the MCSB library for use by client programs.
+
+#ifndef MCSB_MCSBVersion_h
+#define MCSB_MCSBVersion_h
+#pragma once
+
+/// Compile-time major version of MCSB library.
+#define MCSB_MAJOR_VERSION ${MCSB_MAJOR_VERSION}
+
+/// Compile-time minor version of MCSB library.
+#define MCSB_MINOR_VERSION ${MCSB_MINOR_VERSION}
+
+/// Compile-time patch version of MCSB library.
+#define MCSB_PATCH_VERSION ${MCSB_PATCH_VERSION}
+
+/// Compile-time version of MCSB library as a hexadecimal number.
+#define MCSB_VERSION_HEX ${MCSB_VERSION_HEX}
+
+/// Compile-time version of MCSB library as a string.
+#define MCSB_VERSION "${MCSB_VERSION}"
+
+#endif

@@ -1,0 +1,10 @@
+MCSBManager_Location = '${MCSBManager_Location}'
+SwigMCSB_Location = '${_MCSB_Location}'
+
+# put this tree's MCSB module first in the Python path
+# so it comes before any potential system-installed MCSB module
+import os, sys
+MCSB_ModuleLocation = os.path.split(SwigMCSB_Location)[0]
+MCSB_PyPath = os.path.split(MCSB_ModuleLocation)[0]
+sys.path.insert(1,MCSB_PyPath) 
+print 'Prepending %s to sys.path' % MCSB_PyPath

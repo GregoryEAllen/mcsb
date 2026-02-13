@@ -1,0 +1,73 @@
+if(PROJECT_NAME)
+	set(PARENT_PROJECT_NAME ${PROJECT_NAME})
+endif()
+
+project(MCSB)
+cmake_minimum_required(VERSION 2.6)
+
+set(MCSB_MAJOR_VERSION 2)
+set(MCSB_MINOR_VERSION 0)
+set(MCSB_PATCH_VERSION 0)
+set(MCSB_VERSION ${MCSB_MAJOR_VERSION}.${MCSB_MINOR_VERSION}.${MCSB_PATCH_VERSION})
+
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+include(BuildStandalone)
+include(InstallDirs)
+include(doc)
+
+option(MCSB_BUILD_WALL "build MCSB with the -Wall flag" ${BUILD_STANDALONE})
+if(MCSB_BUILD_WALL)
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+endif()
+option(MCSB_BUILD_TESTS "build the MCSB tests" ${BUILD_STANDALONE})
+
+find_library(RT_LIBRARY rt)
+if(RT_LIBRARY)
+	set(MCSB_EXT_LIBS ${MCSB_EXT_LIBS} ${RT_LIBRARY})
+endif()
+
+find_library(EXECINFO_LIBRARY execinfo)
+if(EXECINFO_LIBRARY)
+	set(MCSB_EXT_LIBS ${MCSB_EXT_LIBS} ${EXECINFO_LIBRARY})
+endif()
+
+find_package(LibEV REQUIRED)
+include_directories(${LIBEV_INCLUDE_DIRS})
+set(MCSB_EXT_LIBS ${MCSB_EXT_LIBS} ${LIBEV_LIBRARIES})
+
+find_package(LibVariant)
+option(MCSB_ENABLE_LIBVARIANT "build MCSB with LibVariant dependencies" ${LIBVARIANT_FOUND})
+if(MCSB_ENABLE_LIBVARIANT)
+	include_directories(${LIBVARIANT_INCLUDE_DIRS})
+	set(MCSB_EXT_LIBS ${MCSB_EXT_LIBS} ${LIBVARIANT_LIBRARIES})
+endif()
+
+include_directories(include)
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/include)
+include_directories(src)
+
+add_subdirectory(src)
+add_subdirectory(include)
+add_subdirectory(apps)
+add_subdirectory(examples)
+
+option(MCSB_BUILD_PYTHON "build MCSB python extension with CMake" ON)
+if(MCSB_BUILD_PYTHON)
+	add_subdirectory(python/MCSB)
+endif()
+
+if(MCSB_BUILD_TESTS)
+	enable_testing()
+	add_subdirectory(test)
+endif()
+
+if(NOT BUILD_STANDALONE)
+	# set parent variables as if it used find_package(MCSB)
+	set(MCSB_FOUND TRUE PARENT_SCOPE)
+	set(MCSB_LIBRARIES MCSB ${MCSB_EXT_LIBS} PARENT_SCOPE)
+	get_directory_property(MCSB_INCLUDE_DIRS INCLUDE_DIRECTORIES)
+	set(MCSB_INCLUDE_DIRS ${MCSB_INCLUDE_DIRS} PARENT_SCOPE)
+	set(MCSB_VERSION ${MCSB_VERSION} PARENT_SCOPE)
+	mark_as_advanced(MCSB_BUILD_WALL MCSB_ENABLE_LIBVARIANT MCSB_BUILD_TESTS)
+endif()
