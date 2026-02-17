@@ -14,7 +14,7 @@ architectural redesign, addressing limitations and lessons learned in the
 design of version 1.
 
 The MCSBv2 source code has been publicly released at
-http://bitbucket.org/gallen/mcsb/.
+https://github.com/GregoryEAllen/mcsb/.
 
 ## Features ##
 
@@ -26,14 +26,14 @@ Features of MCSB (since v1):
  - slow consumers will not adversely affect faster producers
     - consumers that are far behind may intentionally have messages dropped
     - such consumers are reliably notified if messages were dropped
- - includes first-class Python bindings with [SWIG](http://www.swig.org/)
- - built and installed with the widely-used tool [CMake](http://cmake.org)
+ - includes first-class Python bindings with [SWIG](https://www.swig.org/)
+ - built and installed with the widely-used tool [CMake](https://cmake.org)
  - runs nightly builds and tests on several platforms with CTest/CDash
  - has advanced command-line argument parsing with the help of
-    [libvariant](http://gallen.bitbucket.org/libvariant-docs/) ArgParse
+    [libvariant](https://GregoryEAllen.github.io/doxy/libvariant-docs/) ArgParse
  - has an `examples` directory providing basic examples to get started
  - provides access to the underlying file descriptor for easy integration
-     with external event loops (e.g. [libev](http://libev.schmorp.de/))
+     with external event loops (e.g. [libev](https://libev.schmorp.de/))
  - MCSB recording and playback tools available
  - MCSB-Bridge available, transparently exchanges messages on a network
 
@@ -42,7 +42,7 @@ Features new to v2:
  - variable message sizes with guaranteed contiguous messages
  - allocated memory can (optionally) grow to meet demand
  - a well-documented public API (with doxygen)
-     served at http://gallen.bitbucket.org/mcsb-docs/
+     served at https://GregoryEAllen.github.io/doxy/mcsb-docs/
  - less sensitive to runtime queue-size parameters, including
      better utilization of free memory to avoid dropped messages
  - a new message descriptor API that can provide:
@@ -57,7 +57,7 @@ Features new to v2:
 
 ## Installation ##
 
-MCSB is built with [CMake](http://www.cmake.org/), the cross-platform,
+MCSB is built with [CMake](https://www.cmake.org/), the cross-platform,
 open-source build system. MCSB has been built and tested on several flavors of
 Linux (RHEL5, RHEL6, Fedora, ARCH, Ubuntu), MacOS X (10.8-10.9), and FreeBSD.
 It would probably work on most POSIX platforms with minimal effort. There are
@@ -76,10 +76,10 @@ documentation for more details and other CMake options.
 
 ### Dependencies ###
 
-MCSB requires [libev](http://software.schmorp.de/pkg/libev.html), a
+MCSB requires [libev](https://software.schmorp.de/pkg/libev.html), a
 high-performance event loop library.
 
-MCSB can optionally use [libvariant](http://bitbucket.org/gallen/libvariant/),
+MCSB can optionally use [libvariant](https://github.com/GregoryEAllen/libvariant/),
 a library that provides advanced command-line argument parsing (in addition to
 many other things). Without libvariant, several of the tools for testing MCSB
 will not get compiled.
@@ -109,7 +109,7 @@ Once MCSB is configured and built, these examples can be built with:
 
 The public API for MCSB is in `include/MCSB`. Documentation can be generated
 for MCSB by using the open source tool,
-[Doxygen](http://www.stack.nl/~dimitri/doxygen/).
+[Doxygen](https://www.stack.nl/~dimitri/doxygen/).
 
 Once MCSB is configured, the Doxygen documentation can be built with:
 
@@ -118,7 +118,7 @@ Once MCSB is configured, the Doxygen documentation can be built with:
 Of course, this requires Doxygen to be installed on your system.
 
 The current MCSB Doxygen documentation is also served on the web at
-[gallen.bitbucket.org/mcsb-docs/](http://gallen.bitbucket.org/mcsb-docs/).
+[GregoryEAllen.github.io/doxy/mcsb-docs/](https://GregoryEAllen.github.io/doxy/mcsb-docs/).
 
 ## Mailing List ##
 
@@ -128,4 +128,4 @@ There is a Google mailing list for public discussion of MCSB:
 
 or
 
-	http://groups.google.com/d/forum/mcsb-middleware
+	https://groups.google.com/d/forum/mcsb-middleware
